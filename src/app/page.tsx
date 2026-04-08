@@ -105,7 +105,7 @@ export default function Home() {
         
         const analyser = audioCtx.createAnalyser();
         analyser.fftSize = 256;
-        const dataArray = new Uint8Array(analyser.frequencyBinariesCount || 128);
+        const dataArray = new Uint8Array(analyser.frequencyBinCount || 128);
 
         source.connect(analyser);
         analyser.connect(audioProcessor);
