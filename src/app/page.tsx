@@ -214,22 +214,22 @@ export default function Home() {
   }, [addTranscription, playRawPcm, sendVideoFrame]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white p-4 font-sans">
-      <header className="mb-6 text-center">
-        <h1 className="text-3xl font-bold tracking-tight text-white flex items-center gap-2">
-          <span className="w-3 h-3 bg-red-500 rounded-full animate-pulse" />
-          Gemini Live Vision & Audio
+    <div className="flex flex-col h-screen max-h-screen bg-black text-white p-2 sm:p-4 font-sans overflow-hidden">
+      <header className="shrink-0 mb-2 sm:mb-6 text-center">
+        <h1 className="text-xl sm:text-3xl font-bold tracking-tight text-white flex items-center justify-center gap-2">
+          <span className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full animate-pulse" />
+          Gemini Live
         </h1>
-        <p className={`text-xs mt-2 font-mono uppercase tracking-widest ${isConnected ? "text-green-500" : "text-zinc-500"}`}>
+        <p className={`text-[10px] sm:text-xs mt-1 font-mono uppercase tracking-widest ${isConnected ? "text-green-500" : "text-zinc-500"}`}>
           {status}
         </p>
       </header>
 
-      <main className="flex flex-col lg:flex-row gap-6 w-full max-w-5xl">
+      <main className="flex-1 flex flex-col lg:flex-row gap-2 sm:gap-6 w-full max-w-5xl mx-auto min-h-0">
         {/* Camera Feed */}
-        <div className="flex-1 relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-          <div className="relative rounded-xl overflow-hidden bg-zinc-900 aspect-video border border-white/10 shadow-2xl">
+        <div className="flex-[3] lg:flex-1 relative group min-h-0">
+          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+          <div className="relative h-full w-full rounded-xl overflow-hidden bg-zinc-900 border border-white/10 shadow-2xl">
             <video
               ref={videoRef}
               autoPlay
@@ -240,9 +240,9 @@ export default function Home() {
             <canvas ref={canvasRef} width="640" height="480" className="hidden" />
             
             {/* Audio Meter Overlay */}
-            <div className="absolute bottom-4 left-4 right-4 flex items-center gap-3 bg-black/40 backdrop-blur-md p-2 rounded-lg border border-white/10">
-              <div className="text-[10px] font-bold uppercase tracking-tighter text-zinc-400">Mic</div>
-              <div className="flex-1 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+            <div className="absolute bottom-2 left-2 right-2 flex items-center gap-2 bg-black/40 backdrop-blur-md p-1.5 rounded-lg border border-white/10">
+              <div className="text-[8px] font-bold uppercase tracking-tighter text-zinc-400">Mic</div>
+              <div className="flex-1 h-1 bg-zinc-800 rounded-full overflow-hidden">
                 <div 
                   className="h-full bg-blue-500 transition-all duration-75"
                   style={{ width: `${Math.min(100, volume * 1.5)}%` }}
@@ -252,30 +252,30 @@ export default function Home() {
 
             {!isConnected && (
               <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm">
-                <div className="w-10 h-10 border-2 border-white/20 border-t-white rounded-full animate-spin mb-4" />
-                <p className="text-sm font-medium text-zinc-400">Establishing Connection...</p>
+                <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin mb-3" />
+                <p className="text-xs font-medium text-zinc-400">Connecting...</p>
               </div>
             )}
           </div>
         </div>
 
         {/* Interaction Log */}
-        <div className="w-full lg:w-72 flex flex-col bg-zinc-900/50 rounded-xl border border-white/5 p-4 h-[400px] lg:h-auto">
-          <h2 className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-4">Conversation</h2>
-          <div className="flex-1 overflow-y-auto space-y-4 pr-2 scrollbar-hide">
+        <div className="flex-1 lg:w-72 flex flex-col bg-zinc-900/50 rounded-xl border border-white/5 p-3 min-h-0">
+          <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-2">Conversation</h2>
+          <div className="flex-1 overflow-y-auto space-y-3 pr-1 scrollbar-hide">
             {transcriptions.length === 0 && (
               <div className="h-full flex items-center justify-center text-center">
-                <p className="text-zinc-600 text-xs italic px-4">
-                  Speak or show objects. Gemini is listening.
+                <p className="text-zinc-600 text-[10px] italic px-4">
+                  Gemini is listening...
                 </p>
               </div>
             )}
             {transcriptions.map((t, i) => (
               <div key={i} className={`flex flex-col ${t.role === "User" ? "items-end" : "items-start"}`}>
-                <div className={`max-w-[90%] p-3 rounded-xl text-sm ${
+                <div className={`max-w-[90%] p-2.5 rounded-xl text-xs ${
                   t.role === "User" 
                     ? "bg-blue-600 text-white rounded-tr-none" 
-                    : "bg-zinc-800 text-zinc-200 rounded-tl-none"
+                    : "bg-zinc-800 text-zinc-200 rounded-tl-none border border-white/5"
                 }`}>
                   {t.text}
                 </div>
@@ -285,8 +285,8 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="mt-8 text-[10px] text-zinc-600 font-mono">
-        ENDPOINT: {isConnected ? "96.51.136.132:3001" : "OFFLINE"} | AUDIO: 24KHZ OUT
+      <footer className="shrink-0 mt-2 text-center text-[8px] text-zinc-600 font-mono">
+        {isConnected ? "CONNECTED" : "OFFLINE"} | 24KHZ | {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
       </footer>
     </div>
   );
