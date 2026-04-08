@@ -146,7 +146,7 @@ export default function Home() {
     }
 
     function connectWebSocket() {
-      const socket = new WebSocket("ws:// https://nonfeasibly-unbesmirched-micheal.ngrok-free.dev");
+      const socket = new WebSocket("ws://https://nonfeasibly-unbesmirched-micheal.ngrok-free.dev");
       socketRef.current = socket;
 
       socket.onopen = () => {
