@@ -1,4 +1,4 @@
-
+const API_KEY = "AIzaSyDCcPXlBVE3E5FCIgnK86yHoLD6UeuSm6U";
 const MODEL_NAME = "gemini-3.1-flash-live-preview";
 const GOOGLE_WS_URL = `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key=${API_KEY}`;
 

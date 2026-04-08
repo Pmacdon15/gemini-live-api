@@ -214,7 +214,7 @@ export default function Home() {
   }, [addTranscription, playRawPcm, sendVideoFrame]);
 
   return (
-    <div className="flex flex-col h-screen max-h-screen bg-black text-white p-2 sm:p-4 font-sans overflow-hidden">
+    <div className="flex flex-col h-screen max-h-screen bg-black text-white p-2 sm:p-4 lg:p-8 font-sans overflow-hidden">
       <header className="shrink-0 mb-2 sm:mb-6 text-center">
         <h1 className="text-xl sm:text-3xl font-bold tracking-tight text-white flex items-center justify-center gap-2">
           <span className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full animate-pulse" />
@@ -225,11 +225,11 @@ export default function Home() {
         </p>
       </header>
 
-      <main className="flex-1 flex flex-col lg:flex-row gap-2 sm:gap-6 w-full max-w-5xl mx-auto min-h-0">
+      <main className="flex-1 flex flex-col lg:flex-row lg:items-stretch lg:justify-center gap-3 sm:gap-6 w-full max-w-5xl mx-auto min-h-0 md:p-24">
         {/* Camera Feed */}
-        <div className="flex-[3] lg:flex-1 relative group min-h-0">
+        <div className="flex-[2] lg:flex-1 relative group min-h-0">
           <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-          <div className="relative h-full w-full rounded-xl overflow-hidden bg-zinc-900 border border-white/10 shadow-2xl">
+          <div className="relative h-full w-full lg:aspect-video rounded-xl overflow-hidden bg-zinc-900 border border-white/10 shadow-2xl">
             <video
               ref={videoRef}
               autoPlay
@@ -260,9 +260,9 @@ export default function Home() {
         </div>
 
         {/* Interaction Log */}
-        <div className="flex-1 lg:w-72 flex flex-col bg-zinc-900/50 rounded-xl border border-white/5 p-3 min-h-0">
+        <div className="flex-1 lg:w-80 lg:flex-none flex flex-col bg-zinc-900/50 rounded-xl border border-white/5 p-3 min-h-0">
           <h2 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-2">Conversation</h2>
-          <div className="flex-1 overflow-y-auto space-y-3 pr-1 scrollbar-hide">
+          <div className="flex-1 overflow-y-auto space-y-3 pr-1">
             {transcriptions.length === 0 && (
               <div className="h-full flex items-center justify-center text-center">
                 <p className="text-zinc-600 text-[10px] italic px-4">
@@ -285,7 +285,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="shrink-0 mt-2 text-center text-[8px] text-zinc-600 font-mono">
+      <footer className="shrink-0 mt-2 lg:mt-8 text-center text-[8px] text-zinc-600 font-mono">
         {isConnected ? "CONNECTED" : "OFFLINE"} | 24KHZ | {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
       </footer>
     </div>
