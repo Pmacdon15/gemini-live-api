@@ -2,6 +2,8 @@ const API_KEY = "AIzaSyBddXXf-INmfU-L9dl0aG_wcyXl0VGj4aQ";
 const MODEL_NAME = "gemini-3.1-flash-live-preview";
 const GOOGLE_WS_URL = `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key=${API_KEY}`;
 
+// To use direct HTTPS (WSS) without a proxy like ngrok, 
+// you would add a 'tls' object here with 'key' and 'cert' paths.
 const server = Bun.serve({
   port: 3001,
   fetch(req, server) {
@@ -77,5 +79,5 @@ const server = Bun.serve({
   },
 });
 
-console.log(`Relay server running at ws://localhost:${server.port}`);
-console.log(`Relay is active on 96.51.136.132:3001 (ensure port is open)`);
+console.log(`Relay server running on port ${server.port}`);
+console.log(`For HTTPS/WSS, connect via your ngrok URL or secure domain.`);
